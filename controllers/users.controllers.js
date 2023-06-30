@@ -10,14 +10,17 @@ const { Meals } = require("../models/meals.models");
 const signupUser = catchAsync(async (req, res) => {
  
     const { name, email, password, role } = req.body;
+   
     const salt = await bcrypt.genSalt(12);
-    hashedPass = await bcrypt.hash(password, salt);
+    const hashedPass = await bcrypt.hash(password, salt);
+   
     const newUser = await Users.create({
       name,
       email,
       password: hashedPass,
       role,
     });
+    
     newUser.password = undefined;
 
     res.status(201).json({
@@ -87,7 +90,7 @@ const deleteUser = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
       status: "success",
-      data: userDeleted,
+      msg: "user deleted success",
     });
 
 });

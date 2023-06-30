@@ -58,10 +58,11 @@ const restaurantsUpdate = catchAsync(async (req, res, next) => {
       return next(new AppError('restaurant not found', 404));
     }
 
-    restaurant.update({ name: req.body.name, address: req.body.address });
+   const result = await restaurant.update({ name: req.body.name, address: req.body.address });
 
     res.status(200).json({
       status: "success",
+      data: result
     });
 
 });

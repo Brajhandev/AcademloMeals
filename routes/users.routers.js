@@ -15,7 +15,7 @@ const {userExists,validateTokenAndId}=require('../middlewares/users.middlewares'
 
 const Usersrouters = express.Router();
 
-Usersrouters.post("/signup",createUserValidators, signupUser);
+Usersrouters.post("/signup", signupUser);
 Usersrouters.post("/login", loginUser);
 Usersrouters.use(protectSession);
 Usersrouters.patch("/:id",userExists,validateTokenAndId,updateUser);

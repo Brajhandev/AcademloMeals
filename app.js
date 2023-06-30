@@ -11,21 +11,19 @@ const { globalErrorHandler } = require("./controllers/errors.controllers");
 const app = express();
 app.use(express.json());
 
-
 //define routes
 app.use("/api/v1/users", Usersrouters);
 app.use("/api/v1/restaurants", Restaurantsrouters);
 app.use("/api/v1/meals", Mealsrouters);
 app.use("/api/v1/orders", Ordersrouters);
 
-
-app.use(globalErrorHandler)
+app.use(globalErrorHandler);
 // Catch non-existing endpoints
-app.all('*', (req, res) => {
-	res.status(404).json({
-		status: 'error',
-		message: `${req.method} ${req.url} does not exists in our server`,
-	});
+app.all("*", (req, res) => {
+  res.status(404).json({
+    status: "error",
+    message: `${req.method} ${req.url} does not exists in our server`,
+  });
 });
 
 module.exports = { app };

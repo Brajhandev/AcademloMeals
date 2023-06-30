@@ -6,7 +6,7 @@ const { catchAsync } = require("../utils/catchAsync.utils");
 const mealsCreate = catchAsync(async (req, res) => {
 
     const { id } = req.params;
-    await Meals.create({
+   const newMeals = await Meals.create({
       restaurantId: id,
       name: req.body.name,
       price: req.body.price,
@@ -15,6 +15,7 @@ const mealsCreate = catchAsync(async (req, res) => {
 
     res.status(201).json({
       status: "success",
+      data: newMeals
     });
 
 });
@@ -67,10 +68,11 @@ const mealsUpdate = catchAsync(async (req, res, next) => {
    
     }
 
-    meal.update({ name: req.body.name, price: req.body.price });
+   const result = await meal.update({ name: req.body.name, price: req.body.price });
 
     res.status(200).json({
       status: "success",
+      data: result
     });
 
 });

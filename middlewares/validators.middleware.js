@@ -8,10 +8,7 @@ const checkValidations = (req, res, next) => {
     const errMessage = errors.array().map((err) => err.msg);
     const message = errMessage.join(". ");
 
-
     return next(new AppError(message, 400));
-    
-
   }
   next();
 };
@@ -32,11 +29,7 @@ const createUserValidators = [
     .withMessage("Password cannot be empty")
     .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters"),
-  body("role")
-    .isString()
-    .withMessage("Role can only be normal or admin")
-    .notEmpty()
-    .withMessage("Role can only be normal or admin"),
+  body("role").notEmpty().withMessage("Role can only be normal or admin"),
   checkValidations,
 ];
 const createRestaurantValidators = [
@@ -52,9 +45,7 @@ const createRestaurantValidators = [
     .withMessage("address must be a string")
     .notEmpty()
     .withMessage("address cannot be empty"),
-  body("rating")
-    .notEmpty()
-    .withMessage("rating cannot be empty"),
+  body("rating").notEmpty().withMessage("rating cannot be empty"),
   checkValidations,
 ];
 const createReviewValidators = [
@@ -75,10 +66,9 @@ const createMealsValidators = [
     .withMessage("Name cannot be empty")
     .isLength({ min: 3 })
     .withMessage("Name must be at least 3 characters"),
-    body("price").notEmpty().withMessage("Price cannot be empty"),
+  body("price").notEmpty().withMessage("Price cannot be empty"),
   body("restaurantId").isEmpty().withMessage("restaurantId cannot be empty"),
   checkValidations,
- 
 ];
 const createOrdersValidators = [
   body("mealId").notEmpty().withMessage("mealId cannot be empty"),

@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 // Utils
 const { AppError } = require('../utils/appError.utils');
 // usamos la variable de entorno 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './.env' });
 
 
 // mensaje de envio para desarrollo

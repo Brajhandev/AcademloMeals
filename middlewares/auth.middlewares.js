@@ -1,6 +1,7 @@
 const { Users } = require("../models/users.models");
 const jwt = require("jsonwebtoken");
 const { catchAsync } = require("../utils/catchAsync.utils");
+const { AppError } = require("../utils/appError.utils");
 // const catchAsync = (fn) => {
 //   return (req, res, next) => {
 //     fn(req, res, next).catch((err) => next(err));
